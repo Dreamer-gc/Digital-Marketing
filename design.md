@@ -1,6 +1,6 @@
 # Digital Marketing Agency Website: Enhanced Design Specification (v2)
 
-> **What changed from v1:** fixed duplicate section numbering, merged the glassmorphism rules into the design system, added a full token set (type scale, spacing, radius, elevation, motion), specified every component with states, added per-section layout and copy direction, added a footer, 404 and legal pages, SEO and analytics requirements, and a build-ready acceptance checklist.
+> **v2.2:** removed Blog, Case Study and Service Detail pages (scope reduction). **v2.1:** now fully responsive for both mobile and desktop (section 8). **What changed from v1:** fixed duplicate section numbering, merged the glassmorphism rules into the design system, added a full token set (type scale, spacing, radius, elevation, motion), specified every component with states, added per-section layout and copy direction, added a footer, 404 and legal pages, SEO and analytics requirements, and a build-ready acceptance checklist.
 
 ---
 
@@ -30,16 +30,14 @@ Use supplied screenshots as inspiration only. Replace all example company names,
 |---|---|---|---|
 | 01 | Home | `/` | Explain the offer, drive enquiries |
 | 02 | About | `/about` | Build trust |
-| 03 | Services | `/services` (+ `/services/[slug]`) | Clarify offerings |
-| 04 | Portfolio | `/portfolio` (+ `/portfolio/[slug]`) | Prove quality and impact |
-| 05 | Process | `/process` | Set expectations |
-| 06 | Blog | `/blog` (+ `/blog/[slug]`) | Education and organic discovery |
-| 07 | Contact | `/contact` | Capture qualified enquiries |
+| 03 | Services | `/services` | Clarify offerings |
+| 04 | Portfolio | `/portfolio` | Prove quality and impact |
+| 05 | Contact | `/contact` | Capture qualified enquiries |
 | Utility | 404, Privacy Policy, Terms, Thank-you | | Completeness and compliance |
 
 If the first release is a single long page, these become sections with matching anchors. Keep content modular so each can become its own route later.
 
-**Primary conversion path:** Hero CTA, Contact form. **Secondary:** Portfolio, Services detail, WhatsApp link.
+**Primary conversion path:** Hero CTA, Contact form. **Secondary:** Portfolio, Services overview, WhatsApp link.
 
 ---
 
@@ -150,7 +148,6 @@ Use `clamp()` for fluid sizing. Max line length: 65 to 70 characters. A single h
 | Service cards | Subtle translucent charcoal, thin border, mild hover highlight |
 | Portfolio | Imagery dominant; glass only for tags, filters and overlay metadata |
 | Statistics | Compact glass panels with high-contrast numbers |
-| Process | Mostly minimal; glass on the active/selected step only |
 | Contact form | Glass panel, with **solid** readable inputs |
 | Footer | Clean solid dark surface, no glass |
 
@@ -165,7 +162,7 @@ Use `clamp()` for fluid sizing. Max line length: 65 to 70 characters. A single h
 
 ### 3.7 Imagery and iconography
 
-- **Photography:** high-contrast, desaturated or monochrome team and workspace shots; lime used only as a small accent. Consistent ratios per card group (16:10 for projects, 4:5 for team, 3:2 for blog).
+- **Photography:** high-contrast, desaturated or monochrome team and workspace shots; lime used only as a small accent. Consistent ratios per card group (16:10 for projects, 4:5 for team).
 - **Project visuals:** device mockups or campaign visuals on dark backgrounds with soft lime rim light.
 - **Icons:** one consistent outline set (e.g. Lucide or Phosphor), 1.5px stroke, 24px grid.
 - `object-fit: cover`, lazy-loading below the fold, meaningful alt text (empty alt for decorative images). Do not use reference screenshots as final assets.
@@ -190,7 +187,6 @@ Each component needs default, hover, focus-visible, active/pressed and disabled 
 | **Statistic item** | Large number (display font), unit in lime, label beneath, short context line. Count-up runs once. |
 | **Process step** | Number, icon, title, 1 to 2 sentence description, connected by a thin line (horizontal on desktop, vertical on mobile). |
 | **Testimonial card** | Quote, name, role, company, optional avatar. Carousel with keyboard-accessible arrows and pause on hover. |
-| **Blog card** | 3:2 cover, category pill, title, excerpt, author, date, read time. |
 | **Form field** | Solid `#202020` background, 1px border, 12px radius, visible label above, helper text below, focus ring in lime, error state with icon, message and `aria-describedby`. |
 | **Tag / pill** | Mono uppercase 12px, glass or outline. |
 | **Footer** | See section 6. |
@@ -226,7 +222,7 @@ Each component needs default, hover, focus-visible, active/pressed and disabled 
 
 - Client-logo row as a slow, pausable marquee (static under reduced motion).
 - Cursor-following soft lime glow on service cards (desktop, pointer-fine only).
-- Portfolio card hover: image zoom plus "View case study" pill.
+- Portfolio card hover: image zoom plus "View project" pill.
 - Header progress line (2px lime) showing page scroll progress.
 - Headline word-by-word fade-up in the hero.
 
@@ -275,7 +271,7 @@ if (reduce || !("IntersectionObserver" in window)) {
 ## 6. Global Layout
 
 ### Header
-Logo left, links (Home, About, Services, Portfolio, Process, Blog, Contact), lime **Let's Talk** button. Sticky; glass with fine border after scroll. Active-section highlighting via observer. Mobile: accessible menu button, menu closes on link selection. Fully keyboard operable, with a "Skip to content" link as the first focusable element.
+Logo left, links (Home, About, Services, Portfolio, Process, Contact), lime **Let's Talk** button. Sticky; glass with fine border after scroll. Active-section highlighting via observer. Mobile: accessible menu button, menu closes on link selection. Fully keyboard operable, with a "Skip to content" link as the first focusable element.
 
 ### Footer (solid dark)
 - Top band: large closing line ("Have a project in mind?") with a lime CTA.
@@ -308,22 +304,12 @@ Logo left, links (Home, About, Services, Portfolio, Process, Blog, Contact), lim
 Large editorial headline; company story and what makes the agency different; mission and vision side by side; 4 to 6 values with icons; team grid; milestones as a vertical or horizontal timeline (verified only); closing CTA. Layout: split editorial with monochrome imagery; lime only on selected words, icons and accents.
 
 ### 03. Services
-- **Overview:** grid of seven services (SEO, Social Media Marketing, Google and Meta Ads, Content Marketing, Branding and Creative Design, Website Development, Email Marketing).
-- **Detail (per service):** name and value proposition; what's included; who it suits; how it's delivered; expected deliverables; related projects; FAQ (3 to 4 items); CTA.
-- **Responsible claims:** never promise guaranteed rankings, leads, revenue or ad results; describe outcomes carefully and back them with evidence.
+Grid of seven services (SEO, Social Media Marketing, Google and Meta Ads, Content Marketing, Branding and Creative Design, Website Development, Email Marketing). Each service card shows an icon in a bordered circle, name, one-line value proposition and a "Learn more" arrow. End the page with a compact process teaser and a closing CTA band. **Responsible claims:** never promise guaranteed rankings, leads, revenue or ad results; describe outcomes carefully and back them with evidence.
 
-### 04. Portfolio / Case studies
-- Gallery with strong thumbnails; filters by service or industry (only when 6+ projects exist).
-- Case study template: hero visual, client and industry, challenge, strategy and services used, execution highlights, results (each metric with timeframe and context), testimonial, next-project link.
-- Label concept work clearly; use only approved client assets.
+### 04. Portfolio
+Gallery with strong thumbnails; filter pills by service or industry (All, SEO, Social, Ads, Branding, Web) — show filters only when 6 or more projects exist. Cards are 16:10 with glass tag overlays (industry, service) and title. Hover reveals image zoom and a "View project" pill. Load more button at the bottom; no infinite scroll that traps the footer. Label concept work clearly; use only approved client assets.
 
-### 05. Process
-Five steps in a connected timeline: **Discover**, **Strategize**, **Create**, **Execute**, **Optimize**. Each has an icon, short explanation, typical deliverable and indicative duration. Add an FAQ ("How long does a project take?") and a CTA. Stack vertically on mobile.
-
-### 06. Blog / Insights
-Featured article, article grid, category pills, search, pagination or "Load more". Article page: cover, title, author, date, read time, table of contents, share links, related posts, newsletter CTA. SEO-friendly slugs, metadata, Open Graph tags. Mark placeholder articles clearly.
-
-### 07. Contact
+### 05. Contact
 Headline and short invitation. Two-column layout: glass form panel plus contact details.
 - **Fields:** Name*, Email*, Phone, Company, Service interested in (select), Project budget (select), Project description*; WhatsApp link; consent checkbox.
 - **States:** inline validation, loading on submit, success (only after server confirmation), error with retry, preserved input on failure.
@@ -337,14 +323,114 @@ Headline and short invitation. Two-column layout: glass form panel plus contact 
 
 ---
 
-## 8. Responsive Behaviour
+## 8. Responsive Behaviour (Mobile and Desktop)
 
-Design mobile-first; verify at 375, 768, 1024, 1280 and 1536px.
+The website must work equally well on **mobile and desktop**. Neither is secondary: design a dedicated desktop layout (1440px) and a dedicated mobile layout (390px) with the same brand, content and features, and make sure tablet sizes adapt cleanly in between. Mobile should never feel like a shrunken desktop, and desktop should never feel like a stretched phone layout.
 
-- **Mobile:** single column, stacked full-width CTAs, compact header (60px), vertical process, 44px minimum touch targets, fewer glass layers and more opaque surfaces.
-- **Tablet:** two-column grids; flexible image/text splits.
-- **Desktop:** editorial multi-column layouts, larger type, generous whitespace.
-- No horizontal overflow; comfortable line lengths; sticky header never dominates the viewport.
+### 8.1 Breakpoints and testing
+
+| Name | Width | Columns | Notes |
+|---|---|---|---|
+| Small phone | 320 to 359px | 4 | Must not break or overflow |
+| Phone (mobile design target) | 360 to 480px | 4 | Design at 390px |
+| Large phone / small tablet | 481 to 767px | 4 to 8 | Two-column cards where space allows |
+| Tablet | 768 to 1023px | 8 | Two-column grids, split layouts |
+| Desktop | 1024 to 1439px | 12 | Editorial layouts; design at 1440px |
+| Wide | 1440px+ | 12 | Max container 1280px, centred |
+
+Verify at 320, 375, 390, 768, 1024, 1280 and 1536px, in portrait and landscape, on real iOS Safari and Android Chrome (not only browser emulation).
+
+### 8.2 Required technical setup
+
+- `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">`; never disable pinch-zoom.
+- Respect safe areas: `padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)` on the header, bottom bars and full-screen menu.
+- Use `100dvh` (with a `100vh` fallback) for full-height sections so the mobile browser toolbar does not cause jumps.
+- `<meta name="theme-color" content="#080808">` so the browser chrome matches the site.
+- Body text 16px minimum on inputs (prevents iOS auto-zoom on focus).
+- `touch-action: manipulation` on buttons and links; remove the 300ms tap delay.
+- `-webkit-tap-highlight-color` set to a subtle lime tint or transparent, with a clear pressed state instead.
+- Add a web app manifest and icons (optional PWA install); include an Apple touch icon.
+
+### 8.3 Touch and ergonomics
+
+- Minimum touch target 44 x 44px, with at least 8px between targets.
+- Place primary actions in the thumb zone (lower half of the screen).
+- Primary buttons are full width on phones, stacked with 12px spacing.
+- Hover effects get touch equivalents: use `:active` pressed states (scale 0.98, border tint) and wrap hover-only styling in `@media (hover: hover) and (pointer: fine)`.
+- No hover-only information. Anything revealed on hover (e.g. project overlays) must be visible by default on touch.
+- Avoid tiny text links in dense clusters; use larger tappable rows.
+
+### 8.4 Mobile navigation
+
+- **Header:** 60px high, compact logo left, hamburger right, and a small lime "Talk" icon-button or text button next to it. Header becomes glass with a hairline border after scrolling 24px.
+- **Menu:** full-screen solid dark overlay (`#080808`, nearly opaque), large stacked links (28 to 32px, Space Grotesk), numbered 01 to 07, "Let's Talk" lime button pinned at the bottom, social/WhatsApp row beneath. Slide-fade in (250ms). Focus is trapped, `Esc` closes it, background scroll is locked, `aria-expanded` is set, and the menu closes after a link is selected.
+- **Sticky bottom action bar (optional, after the hero scrolls out of view):** a slim glass bar with two actions, "Start a Project" (lime) and a WhatsApp icon button. It hides while the menu or keyboard is open and must not cover the footer or cookie banner.
+- **Back-to-top** button appears after long scrolls, positioned clear of the bottom bar.
+
+### 8.5 Mobile layout by section
+
+| Section | Mobile treatment |
+|---|---|
+| Hero | Eyebrow, headline at 40 to 44px (4 to 5 lines max), 2-line paragraph, stacked full-width CTAs, then the visual below the text. Reduce grid and glow intensity to save paint cost. |
+| Trusted clients | Two-row logo grid or a slow single-row marquee; pause under reduced motion. |
+| Services | Single column of compact cards (icon, title, one line, arrow); or a horizontal snap-scroll carousel with peeking next card. |
+| About preview | Image first (4:3), then headline, copy and differentiators as a vertical list. |
+| Featured projects | One card per row at 4:5 or 16:10, tags visible by default, "View project" always visible; or a snap carousel with dots. |
+| Statistics | 2 x 2 grid of compact glass panels, numbers at 36 to 40px. |
+| Process | Vertical timeline with a thin line on the left, number and icon, title and text on the right. |
+| Testimonials | Swipeable single-card carousel with dots and visible arrows for keyboard users. |
+| Contact CTA | Full-width band, stacked buttons, tap-to-call and tap-to-email links. |
+| Footer | Accordion or stacked link groups, large tap targets, newsletter field full width, social icons in a row. |
+
+**Page-specific**
+- **About:** team cards in a 2-column grid; timeline becomes vertical.
+- **Portfolio:** filter pills in a single-row horizontal scroll with fade edges; 1-column grid, "Load more" button.
+- **Contact:** form first, contact details after; WhatsApp and call buttons large and prominent.
+
+### 8.6 Mobile forms
+
+- One column, labels always visible above fields (no placeholder-only labels).
+- Correct input types and attributes: `type="email"` with `inputmode="email"`, `type="tel"` with `inputmode="tel"`, and `autocomplete` values (`name`, `email`, `tel`, `organization`).
+- Selects use native pickers for Service and Budget.
+- Keep the submit button visible and reachable above the on-screen keyboard (no fixed elements covering fields; scroll the focused field into view).
+- Errors are shown inline under each field with an icon and text; on submit failure, scroll to and focus the first error.
+- Preserve typed input if submission fails; show a clear loading and success state.
+
+### 8.7 Mobile typography and spacing
+
+- Headings use `clamp()` so they scale smoothly between 320px and desktop.
+- Body 16px, line-height 1.6; line length stays naturally short.
+- Section padding 64px vertical, 20 to 24px horizontal gutters.
+- Avoid text over busy images; add a dark gradient scrim beneath overlaid text.
+- No horizontal overflow at any width; wide content (tables, code) scrolls inside its own container.
+
+### 8.8 Mobile performance budget
+
+- Target 4G/mid-range Android: LCP under 2.5s, CLS under 0.1, INP under 200ms; initial JS under 170KB gzipped.
+- Serve smaller image variants with `srcset` and `sizes`; AVIF/WebP; hero image under 120KB on mobile.
+- Do not autoplay heavy video on mobile; use a poster image or a lightweight loop under 1MB, and honour data-saver.
+- Reduce or remove `backdrop-filter` on low-power devices and use more opaque surfaces on mobile (blur 8 to 12px, never full-screen blur).
+- Limit simultaneous animated elements; disable parallax and cursor-following effects on touch devices.
+- Preload only the hero image and primary font; self-host and subset fonts.
+
+### 8.9 Mobile gestures and motion
+
+- Horizontal carousels use CSS scroll-snap (`scroll-snap-type: x mandatory`), show a peek of the next card, and never trap vertical scrolling.
+- Do not override native pull-to-refresh or edge-swipe back gestures.
+- Reveal animations remain subtle (shorter 14px travel, 450 to 550ms) and still obey `prefers-reduced-motion`.
+
+### 8.10 Mobile acceptance checklist
+
+- [ ] Works from 320px to 1536px with no horizontal scrolling.
+- [ ] All tap targets are at least 44px; primary CTAs are thumb-reachable.
+- [ ] Menu opens, traps focus, locks scroll, closes on link tap and `Esc`.
+- [ ] Safe areas respected on notched devices; no content hidden behind the bottom bar.
+- [ ] No hover-only content; touch states exist for every interactive element.
+- [ ] Forms use correct keyboards and autocomplete; no iOS zoom-on-focus.
+- [ ] `100dvh` sections do not jump when the browser toolbar shows or hides.
+- [ ] Carousels swipe smoothly and also have non-swipe controls.
+- [ ] Lighthouse mobile 90+ on a throttled connection.
+- [ ] Tested on a real iPhone and a real Android device, in portrait and landscape.
 
 ---
 
@@ -371,7 +457,7 @@ Design mobile-first; verify at 375, 768, 1024, 1280 and 1536px.
 - Render page structure and essential text immediately.
 - Lazy-load images, video and other heavy media below the fold.
 - API-driven sections show a lightweight skeleton in that section only.
-- Fetch the next portfolio or blog batch near the end of the list; prevent duplicate requests and show a retry state on failure.
+- Fetch the next portfolio batch near the end of the list; prevent duplicate requests and show a retry state on failure.
 - Do not use infinite scroll that traps the footer. Provide pagination or "Load more" as a fallback.
 
 ---
@@ -379,29 +465,29 @@ Design mobile-first; verify at 375, 768, 1024, 1280 and 1536px.
 ## 11. SEO, Analytics and Compliance
 
 - Unique title (under 60 characters) and meta description (under 160) per page; canonical URLs; Open Graph and Twitter cards.
-- Structured data: `Organization`, `Service`, `Article`, `BreadcrumbList`.
+- Structured data: `Organization`, `Service`, `BreadcrumbList`.
 - `sitemap.xml`, `robots.txt`, clean slugs, descriptive alt text.
-- Analytics events: CTA clicks, form start, form submit, WhatsApp click, case-study views, scroll depth.
+- Analytics events: CTA clicks, form start, form submit, WhatsApp click, portfolio views, scroll depth.
 - Cookie consent and privacy policy before enabling non-essential tracking.
 
 ---
 
 ## 12. Suggested Tech Stack (optional)
 
-Next.js or Astro, Tailwind CSS with the tokens above, Framer Motion or GSAP for motion, a headless CMS (Sanity, Contentful or Strapi) for blog and portfolio, and a form backend with email delivery and spam protection.
+Next.js or Astro, Tailwind CSS with the tokens above, Framer Motion or GSAP for motion, and a form backend with email delivery and spam protection.
 
 ---
 
 ## 13. Acceptance Checklist
 
-- [ ] All seven main pages/sections plus utility pages exist and are linked.
+- [ ] All five main pages/sections plus utility pages exist and are linked.
 - [ ] Theme consistently uses black, white and `#C0FF3E`; lime stays a small accent.
 - [ ] Glass is used selectively (about 25%) with solid fallbacks.
 - [ ] Page scrolls normally with no nested-scroll trap.
 - [ ] Reveals are smooth, run once and cause no layout shift.
 - [ ] Below-the-fold images lazy-load with reserved space.
 - [ ] Reduced-motion preference is respected.
-- [ ] Mobile navigation and layouts work at 375px.
+- [ ] Mobile checklist in section 8.10 passes.
 - [ ] Contact form validation, success and error states work; spam protection is active.
 - [ ] Every component has hover, focus, active and disabled states.
 - [ ] Portfolio, team, client, testimonial and metric claims use approved real content.
@@ -413,4 +499,4 @@ Next.js or Astro, Tailwind CSS with the tokens above, Framer Motion or GSAP for 
 
 ## 14. Open Content Needed Before Launch
 
-Agency name, logo and brand assets; mission, vision and company introduction; confirmed services and descriptions; team names, roles and approved photos; client names/logos with permission; case studies, visuals and verified results; testimonials with permission to publish; blog articles and author details; business email, phone/WhatsApp and office address; budget ranges and enquiry recipient; privacy policy and terms text.
+Agency name, logo and brand assets; mission, vision and company introduction; confirmed services and descriptions; team names, roles and approved photos; client names/logos with permission; portfolio visuals and verified results; testimonials with permission to publish; business email, phone/WhatsApp and office address; budget ranges and enquiry recipient; privacy policy and terms text.

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#151515"/>
+  <rect x="40" y="40" width="720" height="420" fill="none" stroke="#303030" stroke-width="1" rx="8"/>
+  <text x="400" y="240" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#A5A5A5" text-anchor="middle">Vertex</text>
+  <text x="400" y="270" font-family="JetBrains Mono, monospace" font-size="12" fill="#C0FF3E" text-anchor="middle" letter-spacing="0.1em">SAAS • BRANDING</text>
+  <circle cx="400" cy="340" r="3" fill="#C0FF3E" opacity="0.5"/>
+</svg>
